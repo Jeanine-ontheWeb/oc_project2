@@ -222,7 +222,8 @@ li:hover {
 
 }
 
-.filtres button:active,.filtres button:hover { color: white; background-color: #1d6154; }  
+.filtres button.active { color: white; background-color: #1d6154; }  
+
 
 #portfolio h2 {
   text-align: center;
