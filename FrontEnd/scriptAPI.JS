@@ -7,6 +7,15 @@ fetch("http://localhost:5678/api/works")
     displayWorks(works);
     console.log(works);
   });
+let category = [];
+fetch("http://localhost:5678/api/categories")
+  .then((res) => res.json())
+  .then((data) => {
+    category = data;
+    displayCategory(category);
+    console.log(category);
+  });
+
 //
 function displayWorks(list) {
   const gallery = document.querySelector(".gallery");
@@ -21,21 +30,20 @@ function displayWorks(list) {
 //création de la variable filtres pour cibler la section des filtres dans le HTML
 const filtres = document.querySelector(".filtres");
 
-fetch("http://localhost:5678/api/categories")
-  .then((res) => res.json())
-  .then((data) => {
-    //Creation du bouton "Tous" pour afficher tous les projets
-    const allCategories = document.createElement("button");
-    allCategories.innerHTML = "Tous";
-    filtres.appendChild(allCategories);
+//Creation du bouton "Tous" pour afficher tous les projets
+const allCategories = document.createElement("button");
+allCategories.innerHTML = "Tous";
+allCategories.dataset.id = 0;
+filtres.appendChild(allCategories);
 
-    data.forEach((id) => {
-      //Création d'un bouton pour chaque catégorie récupérée de l'API
-      const button = document.createElement("button");
-      button.innerHTML = id.name;
-      filtres.appendChild(button);
-    });
+function displayCategory(categories) {
+  categories.forEach((cat) => {
+    const btn = document.createElement("button");
+    btn.textContent = cat.name;
+    btn.dataset.id = cat.id;
+    filtres.appendChild(btn);
   });
+}
 
 filtres.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
@@ -43,6 +51,22 @@ filtres.addEventListener("click", (e) => {
     //Ajout de la classe "active" au bouton cliqué et suppression de cette classe pour les autres boutons
     buttons.forEach((btn) => btn.classList.remove("active"));
     e.target.classList.add("active");
+
     //ajout de la logique pour filtrer les projets en fonction du bouton cliqué
+    const filterId = Number(e.target.dataset.id);
+    if (filterId === 0) {
+      displayWorks(works);
+    } else {
+      const filtered = works.filter((work) => work.categoryId === filterId);
+      displayWorks(filtered);
+      console.log("filterId=", filterId);
+    }
   }
 });
+
+console.log(
+  "Boutons générés :",
+  [...document.querySelectorAll(".filtres button")].map(
+    (btn) => btn.dataset.id,
+  ),
+);
