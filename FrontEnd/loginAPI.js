@@ -7,7 +7,7 @@ async function login(email, password) {
   if (!res.ok) throw new Error(`Login failed: ${res.status}`);
   return res.json();
 }
-form.addEventListener("submit", async (event) => {
+connection__form.addEventListener("submit", async (event) => {
   event.preventDefault();
   // Empêche le rechargement
   const email = document.querySelector("#email").value;
@@ -17,6 +17,6 @@ form.addEventListener("submit", async (event) => {
     // On attend la réponse
     console.log("Connexion réussie :", data);
   } catch (error) {
-    console.error("Erreur de connexion :", error);
+    console.log("Erreur de connexion :", error);
   }
 });
