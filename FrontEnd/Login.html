@@ -27,23 +27,32 @@
       <main>
         <h2 class="login">Log In</h2>
         <div class="main__connection">
-          <div class="main__connection-input">
-            <label class="label__email" for="email" autocomplete="on"
-              >E-mail</label
-            >
-            <input type="text" name="email" id="email" />
-            <label class="label__password" for="password">Mot de passe</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              autocomplete="current-password"
-            />
-          </div>
-          <button>Se connecter</button>
+          <form action="" method="post" class="connection__form">
+            <div class="main__connection-input">
+              <label class="label__email" for="email" autocomplete="email"
+                >E-mail</label
+              >
+              <input type="text" name="email" id="email" />
+              <label class="label__password" for="password">Mot de passe</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                autocomplete="current-password"
+              />
+            </div>
+            <button>Se connecter</button>
+          </form>
           <a href="#">Mot de passe oublié</a>
         </div>
       </main>
-    </body>
-  </head>
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
 </html>
+<script src="loginAPI.js"></script>
