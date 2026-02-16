@@ -12,17 +12,38 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
-<body>
-    <header>
-      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-      <nav>
-        <ul>
-          <li>projets</li>
-          <li>contact</li>
-          <li> <a href="Login.html">login</a></li>
-          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
+    <body>
+      <header>
+        <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+        <nav>
+          <ul>
+            <li>projets</li>
+            <li>contact</li>
+            <li><a href="Login.html">login</a></li>
+            <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <h2 class="login">Log In</h2>
+        <div class="main__connection">
+          <div class="main__connection-input">
+            <label class="label__email" for="email" autocomplete="on"
+              >E-mail</label
+            >
+            <input type="text" name="email" id="email" />
+            <label class="label__password" for="password">Mot de passe</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              autocomplete="current-password"
+            />
+          </div>
+          <button>Se connecter</button>
+          <a href="#">Mot de passe oublié</a>
+        </div>
+      </main>
     </body>
+  </head>
+</html>
