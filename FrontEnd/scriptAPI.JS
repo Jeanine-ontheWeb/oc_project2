@@ -30,7 +30,7 @@ function displayWorks(list) {
 //création de la variable filtres pour cibler la section des filtres dans le HTML
 const filtres = document.querySelector(".filtres");
 
-//Creation du bouton "Tous" pour afficher tous les projets
+//Creation du bouton "Tous" pour afficher tous les projets et les boutons filtres
 const allCategories = document.createElement("button");
 allCategories.innerHTML = "Tous";
 allCategories.dataset.id = 0;
