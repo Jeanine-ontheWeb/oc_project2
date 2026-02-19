@@ -15,8 +15,19 @@ connection__form.addEventListener("submit", async (event) => {
   try {
     const data = await login(email, password);
     // On attend la réponse
-    console.log("Connexion réussie :", data);
+    localStorage.setItem("token", data.token);
+    console.log("authentification OK");
   } catch (error) {
     console.log("Erreur de connexion :", error);
   }
+});
+
+const token = localStorage.getItem("token");
+fetch("http://localhost:5678/api/works", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+  body: JSON.stringify(newWork),
 });
