@@ -304,17 +304,9 @@ footer nav ul {
   align-items: center;
 }
 .projetsModifier {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 20px;
-}
-.projetsModifier p:active{
-    animation: backwards;
-    animation-timing-function: ease-out;
-    animation-duration: 300ms;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 20px;
 }
 
-.filtres {
-  display: none;
-}
