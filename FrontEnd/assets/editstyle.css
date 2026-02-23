@@ -291,7 +291,7 @@ footer nav ul {
 
 /*********mode édition******/
 
-.edit__header {
+.editHeader {
   font-weight: 400;
   width: auto;
   height: 59px;
@@ -303,13 +303,13 @@ footer nav ul {
   font-size: 16px;
   align-items: center;
 }
-.projets__modifier {
+.projetsModifier {
     display: flex;
     justify-content: center;
     align-items: baseline;
     gap: 20px;
 }
-.projets__modifier p:active{
+.projetsModifier p:active{
     animation: backwards;
     animation-timing-function: ease-out;
     animation-duration: 300ms;

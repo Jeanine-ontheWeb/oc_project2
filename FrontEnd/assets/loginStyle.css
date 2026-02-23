@@ -299,7 +299,7 @@ h2.login {
   justify-content: center;
 }
 
-.main__connection {
+.mainConnection {
   width: 100%;
   text-align: left;
   margin-top: 30px;
@@ -307,24 +307,24 @@ h2.login {
   flex-direction: column;
   align-items: center;
 }
-#connection__form {
+#connectionForm {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.main__connection-input {
+.connectionInput {
   display: flex;
   flex-direction: column;
 }
 
-.main__connection-input label {
+.connectionInput label {
   margin: 2em 0 1em 0;
   display: block;
   text-align: left;
 }
 
-.main__connection-input input {
+.connectionInput input {
   width: 379px;
   height: 51px;
   border: none;
@@ -342,10 +342,17 @@ button {
   background-color: #1d6154;
   padding: 0.5em 1.5em;
 }
-.main__connection button {
+.mainConnection button {
   display: flex;
 }
-.main__connection-input a {
+.connectionInput a {
   display: flex;
   justify-content: center;
+}
+
+.errorMessage {
+  display: none;
+  font-size: x-large;
+  justify-content: center;
+  margin-top: 15px;
 }
