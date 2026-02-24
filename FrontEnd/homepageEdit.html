@@ -60,11 +60,30 @@
       <section id="portfolio">
         <div class="projetsModifier">
           <h2>Mes Projets</h2>
-          <button class="btnModifier">
-            <i class="fa-regular fa-pen-to-square"></i> modifier
-          </button>
-        </div>
 
+          <a href="#modal" class="modalJs"
+            ><i class="fa-regular fa-pen-to-square"></i>modifier</a
+          >
+          <aside
+            id="modal"
+            class="modalStyle"
+            aria-hidden="true"
+            role="dialog"
+            aria-labelledby="modalTitle"
+            style="display: none"
+          >
+            <div class="modalWrapper modalStopPropagation">
+              <button class="modalCloseBtn">Fermer</button>
+              <h2 id="modalTitle" class="modalTitle">Galerie photo</h2>
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quidem
+                quae est odit amet repellendus modi vero autem placeat
+                accusamus, quaerat tenetur cumque nam, reiciendis inventore quo,
+                soluta neque officia tempore.
+              </p>
+            </div>
+          </aside>
+        </div>
         <div class="gallery"></div>
       </section>
 
@@ -92,3 +111,4 @@
   </body>
 </html>
 <script src="editMode.js"></script>
+<script src="modalApp.js"></script>

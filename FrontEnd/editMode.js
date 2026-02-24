@@ -7,6 +7,7 @@ fetch("http://localhost:5678/api/works")
     displayWorks(works);
     console.log(works);
   });
+  
 function displayWorks(list) {
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
@@ -17,10 +18,3 @@ function displayWorks(list) {
   });
 }
 
-function openModal() {
-  const modal = document.createElement("div");
-  modal.classList.add("modalEdit");
-  modal.addEventListener("click", (e) => {
-    console.log("vous avez cliqué");
-  });
-}
