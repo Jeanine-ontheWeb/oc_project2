@@ -1,6 +1,15 @@
 //gestion ouverture et fermeture de la modale
 let modal = null;
 let lastFocusedElement = null;
+let token = localStorage.getItem("token");
+
+let worksModal = [];
+fetch("http://localhost:5678/api/works")
+  .then((res) => res.json())
+  .then((data) => {
+    worksModal = data;
+    displayWorksModal(worksModal);
+  });
 
 const openModal = function (e) {
   e.preventDefault();
@@ -41,15 +50,37 @@ const stopPropagation = function (e) {
 document.querySelectorAll(".modalJs").forEach((a) => {
   a.addEventListener("click", openModal);
 });
-
 //gestion de l'affichage des travaux dans la modale
-
 function displayWorksModal(array) {
   const modalArray = document.querySelector(".modalArray");
   modalArray.innerHTML = "";
   array.forEach((work) => {
     const modalFigure = document.createElement("figure");
-    modalFigure.innerHTML = ` <img src="${work.imageUrl}" alt="${work.title}"> <button><i class="fa-solid fa-trash-can"></i></button> `;
+    modalFigure.dataset.id = work.id;
+    modalFigure.innerHTML = ` <img src="${work.imageUrl}" alt="${work.title}"> 
+    <button class="deleteButton"><i class="fa-solid fa-trash-can"></i></button> `;
     modalArray.appendChild(modalFigure);
+    attachDeleteListeners();
+  });
+}
+
+//gestion de la fonction de suppression
+
+function attachDeleteListeners() {
+    const deleteButtons = document.querySelectorAll(".deleteButton");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      const figure = e.target.closest("figure");
+      const id = figure.dataset.id;
+      //fetch pour la fonction delete
+      fetch(`http://localhost:5678/api/works/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      figure.remove();
+      const galleryFigure = document.querySelector(`figure[data-id="${id}"]`);
+      if (galleryFigure) galleryFigure.remove();
+      console.log(`Tu as supprimé l'article ${id}`);
+    });
   });
 }

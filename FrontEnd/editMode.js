@@ -5,9 +5,10 @@ fetch("http://localhost:5678/api/works")
   .then((data) => {
     works = data;
     displayWorks(works);
-    displayWorksModal(works);
     console.log(works);
   });
+
+
 
 function displayWorks(list) {
   const gallery = document.querySelector(".gallery");
