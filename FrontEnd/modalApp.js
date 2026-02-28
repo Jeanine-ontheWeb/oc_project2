@@ -65,7 +65,6 @@ function displayWorksModal(array) {
 }
 
 //gestion de la fonction de suppression
-
 function attachDeleteListeners() {
     const deleteButtons = document.querySelectorAll(".deleteButton");
   deleteButtons.forEach((button) => {

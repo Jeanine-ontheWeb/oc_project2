@@ -351,9 +351,12 @@ footer nav ul {
 .modalArray {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin: 60px 70px 70px 70px;
 }
-.modalArray figure{
+.modalArray figure {
   position: relative;
+  margin-bottom: 15px;
 }
 
 .modalArray img {
@@ -370,4 +373,22 @@ footer nav ul {
   top: 5px;
   right: 5px;
   border-radius: 2px;
+}
+hr.separator {
+    border: solid 1px #b3b3b3;
+    width: 420px;
+    margin-bottom: 40px;
+}
+
+button.photoAddButton {
+  all: unset;
+  cursor: pointer;
+  margin: auto;
+  display: flex;
+  background: #1d6154;
+  border-radius: 60px;
+  color: white;
+  font-weight: 700;
+  padding: 12px 30px;
+  margin-bottom: 25px;
 }
