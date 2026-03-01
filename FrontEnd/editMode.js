@@ -8,8 +8,6 @@ fetch("http://localhost:5678/api/works")
     console.log(works);
   });
 
-
-
 function displayWorks(list) {
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";

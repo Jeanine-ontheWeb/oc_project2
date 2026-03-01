@@ -2,6 +2,8 @@
 let modal = null;
 let lastFocusedElement = null;
 let token = localStorage.getItem("token");
+const deleteProject = document.querySelector(".deleteProject");
+const addingProject = document.querySelector(".addingProject");
 
 let worksModal = [];
 fetch("http://localhost:5678/api/works")
@@ -40,6 +42,8 @@ const closeModal = function (e) {
   modal
     .querySelector(".modalStopPropagation")
     .removeEventListener("click", stopPropagation);
+  addingProject.classList.add("hiddenModal");
+  deleteProject.classList.remove("hiddenModal");
   modal = null;
   lastFocusedElement.focus();
 };
@@ -66,7 +70,7 @@ function displayWorksModal(array) {
 
 //gestion de la fonction de suppression
 function attachDeleteListeners() {
-    const deleteButtons = document.querySelectorAll(".deleteButton");
+  const deleteButtons = document.querySelectorAll(".deleteButton");
   deleteButtons.forEach((button) => {
     button.addEventListener("click", function (e) {
       const figure = e.target.closest("figure");
@@ -83,3 +87,17 @@ function attachDeleteListeners() {
     });
   });
 }
+
+//gestion du changement de visuel dans la modale
+const addingButton = document.querySelector(".photoAddButton");
+const backButton = document.querySelector(".backArrow");
+
+addingButton.addEventListener("click", () => {
+  deleteProject.classList.add("hiddenModal");
+  addingProject.classList.remove("hiddenModal");
+});
+
+backButton.addEventListener("click", () => {
+  deleteProject.classList.remove("hiddenModal");
+  addingProject.classList.add("hiddenModal");
+});

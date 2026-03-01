@@ -392,3 +392,7 @@ button.photoAddButton {
   padding: 12px 30px;
   margin-bottom: 25px;
 }
+
+.hiddenModal{
+  display: none;
+}
