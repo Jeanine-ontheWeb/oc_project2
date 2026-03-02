@@ -86,15 +86,25 @@
                 <button class="backArrow">
                   <i class="fa-solid fa-arrow-left"></i>
                 </button>
-                  <h3 id="addingProjectTitle" class="modalTitle">
-                    Ajout photo
-                  </h3>
-                  <form action="" method="get" class="formProject">
-                    <label for="photoInput" class="photoInput">
-                      <input type="file" class="photoInput" />
+                <h3 id="addingProjectTitle" class="modalTitle">Ajout photo</h3>
+                <form action="" method="get" class="formProject">
+                  <div class="uploadZone">
+                    <label for="photoInput" class="photoInputLabel">
+                      <i class="fa-regular fa-image"></i>
+                      <button class="inputButton">+ Ajouter photo</button>
+                      <p class="paragraphInput">jpg, png : 4mo max</p>
                     </label>
-                  </form>
-                </button>
+                    <input type="file" id="photoInput" />
+                  </div>
+                  <label for="titleInput" class="titleInputLabel">Titre</label>
+                  <input type="text" name="Titre du projet" id="titleInput" />
+
+                  <label for="categoryInput" class="categoryInputLabel"
+                    >Catégorie</label
+                  >
+                  <select name="categoryInput" id="categoryInput"></select>
+                  <button class="photoAddButton">Valider</button>
+                </form>
               </div>
             </div>
           </aside>
