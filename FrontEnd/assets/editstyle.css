@@ -380,7 +380,7 @@ hr.separator {
   margin-bottom: 40px;
 }
 
-button.photoAddButton {
+.deleteProject .photoAddButton {
   all: unset;
   cursor: pointer;
   margin: auto;
@@ -407,17 +407,21 @@ button.photoAddButton {
   display: block;
   border-radius: 10px;
 }
-.addingProject .backArrow {
+.buttonsStyle {
+  display: flex;
+}
+.backArrow {
   all: unset;
   cursor: pointer;
   font-size: 24px;
-  margin: 0 0 24px 24px;
+  margin: 24px 0 0 24px;
   margin-right: auto;
-  display: flex;
+  position: absolute;
 }
 .addingProject {
   display: flex;
   flex-direction: column;
+  margin: 50px;
 }
 
 .formProject {
@@ -432,6 +436,7 @@ button.photoAddButton {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 25px 0 25px 0;
 }
 
 .photoInputLabel {
@@ -446,14 +451,22 @@ button.photoAddButton {
   font-size: 60px;
   color: #b9c5cc;
 }
+button.inputButton {
+  all: unset;
+  background: #cbd6dc;
+  color: #306685;
+  padding: 10px 25px 10px 25px;
+  border-radius: 50px;
+  margin-top: 10px;
+}
 
 .paragraphInput {
   margin-top: 10px;
   font-size: 12px;
   color: #b9c5cc;
   text-align: center;
+  color: #444444;
 }
-
 #titleInput {
   all: unset;
   width: 420px;
@@ -462,10 +475,38 @@ button.photoAddButton {
 }
 
 #categoryInput {
+  all: unset;
   width: 420px;
   height: 51px;
+  margin-bottom: 25px;
   box-shadow: 0px 4px 14px 0px #00000017;
 }
 #photoInput {
   display: none;
+}
+.titleInputLabel {
+  margin: 10px 0 10px 0;
+}
+
+.categoryInputLabel {
+  margin: 10px 0 10px 0;
+}
+
+.addingProject .separator {
+  margin-top: 10px;
+}
+
+.addingProject .photoAddButton {
+  all: unset;
+  cursor: pointer;
+  margin: auto;
+  display: flex;
+  background: #a7a7a7;
+  border-radius: 60px;
+  color: white;
+  font-weight: 700;
+  width: 237px;
+  height: 36px;
+  justify-content: center;
+  align-items: center;
 }

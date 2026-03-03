@@ -44,6 +44,7 @@ const closeModal = function (e) {
     .removeEventListener("click", stopPropagation);
   addingProject.classList.add("hiddenModal");
   deleteProject.classList.remove("hiddenModal");
+  backButton.classList.add("hiddenModal");
   modal = null;
   lastFocusedElement.focus();
 };
@@ -95,9 +96,11 @@ const backButton = document.querySelector(".backArrow");
 addingButton.addEventListener("click", () => {
   deleteProject.classList.add("hiddenModal");
   addingProject.classList.remove("hiddenModal");
+  backButton.classList.remove("hiddenModal");
 });
 
 backButton.addEventListener("click", () => {
   deleteProject.classList.remove("hiddenModal");
   addingProject.classList.add("hiddenModal");
+  backButton.classList.add("hiddenModal");
 });
