@@ -82,6 +82,7 @@ function attachDeleteListeners() {
         headers: { Authorization: `Bearer ${token}` },
       });
       figure.remove();
+      preventDefault()
       const galleryFigure = document.querySelector(`figure[data-id="${id}"]`);
       if (galleryFigure) galleryFigure.remove();
       console.log(`Tu as supprimé l'article ${id}`);

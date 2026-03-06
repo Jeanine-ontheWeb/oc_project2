@@ -289,7 +289,7 @@ footer nav ul {
   margin: 2em;
 }
 a {
-    all: unset;
+  all: unset;
 }
 
 /*********Page Login*********/
@@ -358,4 +358,5 @@ button {
   font-size: x-large;
   justify-content: center;
   margin-top: 15px;
+  color: red;
 }

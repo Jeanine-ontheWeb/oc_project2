@@ -7,6 +7,7 @@ fetch("http://localhost:5678/api/works")
     displayWorks(works);
     console.log(works);
   });
+let logout = document.querySelector(".logoutButton");
 
 function displayWorks(list) {
   const gallery = document.querySelector(".gallery");
@@ -17,3 +18,7 @@ function displayWorks(list) {
     gallery.appendChild(figure);
   });
 }
+
+logout.addEventListener("click", () => {
+  localStorage.clear();
+});
