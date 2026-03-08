@@ -19,6 +19,9 @@ function displayWorks(list) {
   });
 }
 
+
+//libération du token au logout
+
 logout.addEventListener("click", () => {
   localStorage.clear();
 });

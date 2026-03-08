@@ -4,6 +4,7 @@ let lastFocusedElement = null;
 let token = localStorage.getItem("token");
 const deleteProject = document.querySelector(".deleteProject");
 const addingProject = document.querySelector(".addingProject");
+const submitButton = document.querySelector(".submitButton");
 
 let worksModal = [];
 fetch("http://localhost:5678/api/works")
@@ -11,6 +12,14 @@ fetch("http://localhost:5678/api/works")
   .then((data) => {
     worksModal = data;
     displayWorksModal(worksModal);
+  });
+
+let categoryModal = [];
+fetch("http://localhost:5678/api/categories")
+  .then((res) => res.json())
+  .then((data) => {
+    categoryModal = data;
+    displayCategory(categoryModal);
   });
 
 const openModal = function (e) {
@@ -45,6 +54,7 @@ const closeModal = function (e) {
   addingProject.classList.add("hiddenModal");
   deleteProject.classList.remove("hiddenModal");
   backButton.classList.add("hiddenModal");
+  resetForm();
   modal = null;
   lastFocusedElement.focus();
 };
@@ -80,9 +90,12 @@ function attachDeleteListeners() {
       fetch(`http://localhost:5678/api/works/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
+      }).then(() => {
+        refreshPage();
       });
       figure.remove();
-      preventDefault()
+      preventDefault();
+
       const galleryFigure = document.querySelector(`figure[data-id="${id}"]`);
       if (galleryFigure) galleryFigure.remove();
       console.log(`Tu as supprimé l'article ${id}`);
@@ -101,7 +114,107 @@ addingButton.addEventListener("click", () => {
 });
 
 backButton.addEventListener("click", () => {
+  resetForm();
   deleteProject.classList.remove("hiddenModal");
   addingProject.classList.add("hiddenModal");
   backButton.classList.add("hiddenModal");
 });
+
+// afficher catégorie dans la liste déroulante
+function displayCategory(list) {
+  const categoryInput = document.querySelector("#categoryInput");
+  categoryInput.innerHTML = "";
+
+  list.forEach((categoryOption) => {
+    const option = document.createElement("option");
+    option.classList = categoryOption;
+    option.value = categoryOption.id;
+    option.textContent = categoryOption.name;
+    categoryInput.appendChild(option);
+  });
+}
+const photoInput = document.querySelector("#photoInput");
+const previewImage = document.querySelector("#previewImage");
+const icon = document.querySelector(".photoInputLabel i");
+const button = document.querySelector(".inputButton");
+const paragraph = document.querySelector(".paragraphInput");
+
+button.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  photoInput.click();
+});
+
+photoInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const allowedTypes = ["image/jpeg", "image/png"];
+  if (!allowedTypes.includes(file.type)) {
+    alert("Le fichier doit être un JPG ou PNG");
+    photoInput.value = "";
+    return;
+  }
+  const maxSize = 4 * 1024 * 1024;
+  if (file.size > maxSize) {
+    alert("L'image doit faire moins de 4 Mo");
+    photoInput.value = "";
+    return;
+  }
+
+  const imageURL = URL.createObjectURL(file);
+  previewImage.src = imageURL;
+  previewImage.style.display = "block";
+
+  icon.style.display = "none";
+  button.style.display = "none";
+  paragraph.style.display = "none";
+});
+
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const title = document.querySelector("#titleInput").value;
+  const category = document.querySelector("#categoryInput").value;
+  const file = photoInput.files[0];
+
+  if (!title || !category || !file) {
+    alert("Merci de remplir tous les champs");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("category", category);
+  formData.append("image", file);
+
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: formData,
+  }).then(() => {
+    refreshPage();
+    resetForm();
+  });
+});
+function resetForm() {
+  document.querySelector("#titleInput").value = "";
+  document.querySelector("#categoryInput").value = "";
+  photoInput.value = "";
+  previewImage.src = "";
+  previewImage.style.display = "none";
+  icon.style.display = "block";
+  button.style.display = "block";
+  paragraph.style.display = "block";
+}
+
+//Eviter le rechargement de la page
+function refreshPage() {
+  fetch("http://localhost:5678/api/works")
+    .then((res) => res.json())
+    .then((data) => {
+      worksModal = data;
+      displayWorks(data);
+      displayWorksModal(data);
+    });
+}

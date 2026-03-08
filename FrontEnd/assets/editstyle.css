@@ -468,18 +468,22 @@ button.inputButton {
   color: #444444;
 }
 #titleInput {
-  all: unset;
   width: 420px;
   height: 51px;
+  border: transparent;
+  margin-bottom: 25px;
   box-shadow: 0px 4px 14px 0px #00000017;
+  color: #444444;
 }
 
 #categoryInput {
-  all: unset;
   width: 420px;
   height: 51px;
+  border: transparent;
   margin-bottom: 25px;
   box-shadow: 0px 4px 14px 0px #00000017;
+  font-family: "Work Sans";
+  color: #444444;
 }
 #photoInput {
   display: none;
@@ -496,7 +500,7 @@ button.inputButton {
   margin-top: 10px;
 }
 
-.addingProject .photoAddButton {
+.addingProject .submitButton {
   all: unset;
   cursor: pointer;
   margin: auto;
@@ -509,4 +513,13 @@ button.inputButton {
   height: 36px;
   justify-content: center;
   align-items: center;
+}
+
+.previewImage {
+  width: 129px;
+  height: 193px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
 }
