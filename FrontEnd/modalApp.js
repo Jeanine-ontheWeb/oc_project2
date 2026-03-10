@@ -75,8 +75,8 @@ function displayWorksModal(array) {
     modalFigure.innerHTML = ` <img src="${work.imageUrl}" alt="${work.title}"> 
     <button class="deleteButton"><i class="fa-solid fa-trash-can"></i></button> `;
     modalArray.appendChild(modalFigure);
-    attachDeleteListeners();
   });
+  attachDeleteListeners();
 }
 
 //gestion de la fonction de suppression
@@ -94,7 +94,7 @@ function attachDeleteListeners() {
         refreshPage();
       });
       figure.remove();
-      preventDefault();
+      e.preventDefault();
 
       const galleryFigure = document.querySelector(`figure[data-id="${id}"]`);
       if (galleryFigure) galleryFigure.remove();
@@ -127,7 +127,6 @@ function displayCategory(list) {
 
   list.forEach((categoryOption) => {
     const option = document.createElement("option");
-    option.classList = categoryOption;
     option.value = categoryOption.id;
     option.textContent = categoryOption.name;
     categoryInput.appendChild(option);
@@ -135,7 +134,7 @@ function displayCategory(list) {
 }
 const photoInput = document.querySelector("#photoInput");
 const previewImage = document.querySelector("#previewImage");
-const icon = document.querySelector(".photoInputLabel i");
+const icon = document.querySelector(".logoImage");
 const button = document.querySelector(".inputButton");
 const paragraph = document.querySelector(".paragraphInput");
 
@@ -155,6 +154,7 @@ photoInput.addEventListener("change", (e) => {
     photoInput.value = "";
     return;
   }
+
   const maxSize = 4 * 1024 * 1024;
   if (file.size > maxSize) {
     alert("L'image doit faire moins de 4 Mo");
@@ -164,11 +164,11 @@ photoInput.addEventListener("change", (e) => {
 
   const imageURL = URL.createObjectURL(file);
   previewImage.src = imageURL;
-  previewImage.style.display = "block";
 
-  icon.style.display = "none";
-  button.style.display = "none";
-  paragraph.style.display = "none";
+  previewImage.classList.remove("hiddenModal");
+  icon.classList.add("hiddenModal");
+  button.classList.add("hiddenModal");
+  paragraph.classList.add("hiddenModal");
 });
 
 submitButton.addEventListener("click", (e) => {
@@ -201,11 +201,11 @@ function resetForm() {
   document.querySelector("#titleInput").value = "";
   document.querySelector("#categoryInput").value = "";
   photoInput.value = "";
-  previewImage.src = "";
-  previewImage.style.display = "none";
-  icon.style.display = "block";
-  button.style.display = "block";
-  paragraph.style.display = "block";
+  previewImage.src = "#";
+  icon.classList.remove("hiddenModal");
+  button.classList.remove("hiddenModal");
+  paragraph.classList.remove("hiddenModal");
+ previewImage.classList.add("hiddenModal");
 }
 
 //Eviter le rechargement de la page

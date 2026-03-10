@@ -20,7 +20,7 @@
   <body>
     <section class="editHeader">
       <i class="fa-regular fa-pen-to-square"></i>
-      <p>Mode édition</p>
+      <h3>Mode édition</h3>
     </section>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -36,7 +36,11 @@
     <main>
       <section id="introduction">
         <figure>
-          <img src="./assets/images/sophie-bluel.png" alt="" />
+          <h2 hidden>introduction</h2>
+          <img
+            src="./assets/images/sophie-bluel.png"
+            alt="Portrait de Sophie Bluel"
+          />
         </figure>
         <article>
           <h2>Designer d'espace</h2>
@@ -64,7 +68,7 @@
           <a href="#modal" class="modalJs"
             ><i class="fa-regular fa-pen-to-square"></i>modifier</a
           >
-          <aside
+          <div
             id="modal"
             class="modalStyle"
             aria-hidden="true"
@@ -89,18 +93,19 @@
               </div>
               <div class="addingProject hiddenModal">
                 <h3 id="addingProjectTitle" class="modalTitle">Ajout photo</h3>
-                <form action="" method="get" class="formProject">
+                <form action="#" method="get" class="formProject">
                   <div class="uploadZone">
-                    <label for="photoInput" class="photoInputLabel">
-                      <i class="fa-regular fa-image"></i>
-                      <button class="inputButton">+ Ajouter photo</button>
-                      <p class="paragraphInput">jpg, png : 4mo max</p>
-                      <img
-                        id="previewImage"
-                        class="previewImage"
-                        style="display: none"
-                      />
-                    </label>
+                    <label for="photoInput" class="photoInputLabel"> <img
+                    src="#"
+                      id="previewImage"
+                      class="previewImage hiddenModal"
+                    
+                      alt="preview"
+                    /> </label>
+                    <i class="fa-regular fa-image logoImage"></i>
+                    <button class="inputButton">+ Ajouter photo</button>
+                    <p class="paragraphInput">jpg, png : 4mo max</p>
+                   
                     <input type="file" id="photoInput" />
                   </div>
                   <label for="titleInput" class="titleInputLabel">Titre</label>
@@ -115,7 +120,7 @@
                 </form>
               </div>
             </div>
-          </aside>
+          </div>
         </div>
         <div class="gallery"></div>
       </section>
@@ -141,7 +146,7 @@
         </ul>
       </nav>
     </footer>
+    <script src="editMode.js"></script>
+    <script src="modalApp.js"></script>
   </body>
 </html>
-<script src="editMode.js"></script>
-<script src="modalApp.js"></script>

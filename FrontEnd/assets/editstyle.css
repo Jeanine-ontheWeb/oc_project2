@@ -434,6 +434,7 @@ hr.separator {
   height: 169px;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 25px 0 25px 0;
@@ -447,7 +448,7 @@ hr.separator {
   cursor: pointer;
 }
 
-.photoInputLabel i.fa-regular.fa-image {
+.logoImage {
   font-size: 60px;
   color: #b9c5cc;
 }
