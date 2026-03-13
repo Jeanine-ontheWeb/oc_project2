@@ -1,4 +1,4 @@
-//gestion ouverture et fermeture de la modale
+
 let modal = null;
 let lastFocusedElement = null;
 let token = localStorage.getItem("token");
@@ -21,7 +21,7 @@ fetch("http://localhost:5678/api/categories")
     categoryModal = data;
     displayCategory(categoryModal);
   });
-
+//gestion ouverture de la modale
 const openModal = function (e) {
   e.preventDefault();
   const target = document.querySelector(e.target.getAttribute("href"));
@@ -29,7 +29,7 @@ const openModal = function (e) {
   modal = target;
   modal.style.display = null;
   modal.removeAttribute("aria-hidden");
-  modal.setAttribute("aria-modal", "true");
+  modal.setAttribute("aria-modal", true);
   modal.addEventListener("click", closeModal);
   modal.querySelector(".modalCloseBtn").addEventListener("click", closeModal);
   modal.querySelector(".modalCloseBtn").focus();
@@ -38,6 +38,7 @@ const openModal = function (e) {
     .addEventListener("click", stopPropagation);
 };
 
+//gestion de fermeture de la modale
 const closeModal = function (e) {
   if (modal === null) return;
   e.preventDefault();
@@ -98,7 +99,6 @@ function attachDeleteListeners() {
 
       const galleryFigure = document.querySelector(`figure[data-id="${id}"]`);
       if (galleryFigure) galleryFigure.remove();
-      console.log(`Tu as supprimé l'article ${id}`);
     });
   });
 }
@@ -144,6 +144,7 @@ button.addEventListener("click", (e) => {
   photoInput.click();
 });
 
+// Message d'erreur
 photoInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
   if (!file) return;
@@ -205,7 +206,7 @@ function resetForm() {
   icon.classList.remove("hiddenModal");
   button.classList.remove("hiddenModal");
   paragraph.classList.remove("hiddenModal");
- previewImage.classList.add("hiddenModal");
+  previewImage.classList.add("hiddenModal");
 }
 
 //Eviter le rechargement de la page

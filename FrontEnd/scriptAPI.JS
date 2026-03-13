@@ -16,7 +16,7 @@ fetch("http://localhost:5678/api/categories")
     console.log(category);
   });
 
-//
+//Affichages des projets sur le site
 function displayWorks(list) {
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
@@ -63,10 +63,3 @@ filtres.addEventListener("click", (e) => {
     }
   }
 });
-
-console.log(
-  "Boutons générés :",
-  [...document.querySelectorAll(".filtres button")].map(
-    (btn) => btn.dataset.id,
-  ),
-);
