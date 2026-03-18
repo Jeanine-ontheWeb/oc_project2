@@ -8,7 +8,7 @@ fetch("http://localhost:5678/api/works")
     console.log(works);
   });
 let logout = document.querySelector(".logoutButton");
-
+//affichage de la gallerie
 function displayWorks(list) {
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
@@ -18,10 +18,7 @@ function displayWorks(list) {
     gallery.appendChild(figure);
   });
 }
-
-
 //libération du token au logout
-
 logout.addEventListener("click", () => {
   localStorage.clear();
 });

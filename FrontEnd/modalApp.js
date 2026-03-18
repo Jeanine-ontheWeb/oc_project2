@@ -1,4 +1,4 @@
-
+//variables générales
 let modal = null;
 let lastFocusedElement = null;
 let token = localStorage.getItem("token");
@@ -6,6 +6,7 @@ const deleteProject = document.querySelector(".deleteProject");
 const addingProject = document.querySelector(".addingProject");
 const submitButton = document.querySelector(".submitButton");
 
+//Fetch des travaux et stockage
 let worksModal = [];
 fetch("http://localhost:5678/api/works")
   .then((res) => res.json())
@@ -14,6 +15,7 @@ fetch("http://localhost:5678/api/works")
     displayWorksModal(worksModal);
   });
 
+//Fetch des catégories et stockage
 let categoryModal = [];
 fetch("http://localhost:5678/api/categories")
   .then((res) => res.json())
@@ -21,6 +23,7 @@ fetch("http://localhost:5678/api/categories")
     categoryModal = data;
     displayCategory(categoryModal);
   });
+
 //gestion ouverture de la modale
 const openModal = function (e) {
   e.preventDefault();
@@ -60,12 +63,14 @@ const closeModal = function (e) {
   lastFocusedElement.focus();
 };
 
+//stop propagation
 const stopPropagation = function (e) {
   e.stopPropagation();
 };
 document.querySelectorAll(".modalJs").forEach((a) => {
   a.addEventListener("click", openModal);
 });
+
 //gestion de l'affichage des travaux dans la modale
 function displayWorksModal(array) {
   const modalArray = document.querySelector(".modalArray");
@@ -87,6 +92,7 @@ function attachDeleteListeners() {
     button.addEventListener("click", function (e) {
       const figure = e.target.closest("figure");
       const id = figure.dataset.id;
+
       //fetch pour la fonction delete
       fetch(`http://localhost:5678/api/works/${id}`, {
         method: "DELETE",
@@ -107,12 +113,13 @@ function attachDeleteListeners() {
 const addingButton = document.querySelector(".photoAddButton");
 const backButton = document.querySelector(".backArrow");
 
+//changement de visuel vers l'ajout
 addingButton.addEventListener("click", () => {
   deleteProject.classList.add("hiddenModal");
   addingProject.classList.remove("hiddenModal");
   backButton.classList.remove("hiddenModal");
 });
-
+//changement de visuel vers la suppression
 backButton.addEventListener("click", () => {
   resetForm();
   deleteProject.classList.remove("hiddenModal");
@@ -120,7 +127,7 @@ backButton.addEventListener("click", () => {
   backButton.classList.add("hiddenModal");
 });
 
-// afficher catégorie dans la liste déroulante
+// afficher catégorie dans la liste déroulante depuis le fetch
 function displayCategory(list) {
   const categoryInput = document.querySelector("#categoryInput");
   categoryInput.innerHTML = "";
@@ -132,6 +139,7 @@ function displayCategory(list) {
     categoryInput.appendChild(option);
   });
 }
+//variables
 const photoInput = document.querySelector("#photoInput");
 const previewImage = document.querySelector("#previewImage");
 const icon = document.querySelector(".logoImage");
@@ -148,21 +156,21 @@ button.addEventListener("click", (e) => {
 photoInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
   if (!file) return;
-
+//verification du type autorisé
   const allowedTypes = ["image/jpeg", "image/png"];
   if (!allowedTypes.includes(file.type)) {
     alert("Le fichier doit être un JPG ou PNG");
     photoInput.value = "";
     return;
   }
-
+//verification de la taille
   const maxSize = 4 * 1024 * 1024;
   if (file.size > maxSize) {
     alert("L'image doit faire moins de 4 Mo");
     photoInput.value = "";
     return;
   }
-
+//creation objet 
   const imageURL = URL.createObjectURL(file);
   previewImage.src = imageURL;
 
@@ -178,12 +186,12 @@ submitButton.addEventListener("click", (e) => {
   const title = document.querySelector("#titleInput").value;
   const category = document.querySelector("#categoryInput").value;
   const file = photoInput.files[0];
-
+//message d'erreur si tout les champs ne sont pas remplis
   if (!title || !category || !file) {
     alert("Merci de remplir tous les champs");
     return;
   }
-
+//fetch avec méthode post pour envoyer un nouveau projet et mettre a jour la gallery sans rechargement
   const formData = new FormData();
   formData.append("title", title);
   formData.append("category", category);
@@ -198,6 +206,8 @@ submitButton.addEventListener("click", (e) => {
     resetForm();
   });
 });
+
+//fonction vidage du formulaire
 function resetForm() {
   document.querySelector("#titleInput").value = "";
   document.querySelector("#categoryInput").value = "";
@@ -209,7 +219,7 @@ function resetForm() {
   previewImage.classList.add("hiddenModal");
 }
 
-//Eviter le rechargement de la page
+//fonction qui évite le rechargement de la page & Modale
 function refreshPage() {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())

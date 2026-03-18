@@ -1,4 +1,4 @@
-//ajout de la variable works pour stocker les données récupérées de l'API
+//fetch avec stockage des travaux pour la gallerie principale
 let works = [];
 fetch("http://localhost:5678/api/works")
   .then((res) => res.json())
@@ -7,6 +7,7 @@ fetch("http://localhost:5678/api/works")
     displayWorks(works);
     console.log(works);
   });
+//fetch avec stockage des catégories pour les filtres
 let category = [];
 fetch("http://localhost:5678/api/categories")
   .then((res) => res.json())
@@ -26,7 +27,6 @@ function displayWorks(list) {
     gallery.appendChild(figure);
   });
 }
-
 //création de la variable filtres pour cibler la section des filtres dans le HTML
 const filtres = document.querySelector(".filtres");
 
@@ -35,7 +35,7 @@ const allCategories = document.createElement("button");
 allCategories.innerHTML = "Tous";
 allCategories.dataset.id = 0;
 filtres.appendChild(allCategories);
-
+//Fonction pour trier avec l'ID des catégories
 function displayCategory(categories) {
   categories.forEach((cat) => {
     const btn = document.createElement("button");
@@ -44,7 +44,7 @@ function displayCategory(categories) {
     filtres.appendChild(btn);
   });
 }
-
+//Gestion du filtrage
 filtres.addEventListener("click", (e) => {
   if (e.target.tagName === "BUTTON") {
     const buttons = filtres.querySelectorAll("button");
