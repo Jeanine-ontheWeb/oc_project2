@@ -35,7 +35,7 @@ const allCategories = document.createElement("button");
 allCategories.innerHTML = "Tous";
 allCategories.dataset.id = 0;
 filtres.appendChild(allCategories);
-//Fonction pour trier avec l'ID des catégories
+//Fonction pour afficher le nom de la catégorie avec l'ID
 function displayCategory(categories) {
   categories.forEach((cat) => {
     const btn = document.createElement("button");

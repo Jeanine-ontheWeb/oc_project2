@@ -219,7 +219,7 @@ function resetForm() {
   previewImage.classList.add("hiddenModal");
 }
 
-//fonction qui évite le rechargement de la page & Modale
+//fonction qui évite le rechargement de la page & modale
 function refreshPage() {
   fetch("http://localhost:5678/api/works")
     .then((res) => res.json())

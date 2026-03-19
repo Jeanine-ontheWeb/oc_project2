@@ -1,10 +1,10 @@
+//fonction asynchrone pour la connection de l'utilisateur
 async function login(email, password) {
   const res = await fetch("http://localhost:5678/api/users/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
-
   if (!res.ok) throw new Error(`Login failed: ${res.status}`);
   return res.json();
 }
